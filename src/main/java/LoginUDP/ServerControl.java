@@ -27,7 +27,7 @@ public class ServerControl {
 
     private Connection con;
     private DatagramSocket myServer;
-    private int serverPort = 5555;
+    private int serverPort = 3001;
     private DatagramPacket receivePacket = null;
 
     public ServerControl() {
@@ -39,8 +39,8 @@ public class ServerControl {
     }
 
     private void getDBConnection(String dbName, String username, String password) {
-        String dbUrl = "jdbc:mysql://your.database.domain/" + dbName;
-        String dbClass = "com.mysql.jdbc.Driver";
+        String dbUrl = "jdbc:mysql://localhost:3306/" + dbName;
+        String dbClass = "com.mysql.cj.jdbc.Driver";
         try {
             Class.forName(dbClass);
             con = DriverManager.getConnection(dbUrl, username, password);
@@ -99,7 +99,7 @@ public class ServerControl {
     }
 
     private boolean checkUser(User user) {
-        String query = "Select * FROM users WHERE username ='"
+        String query = "Select * FROM tblUser WHERE username ='"
                 + user.getUserName()
                 + "' AND password ='" + user.getPassword() + "'";
         try {

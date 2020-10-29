@@ -21,7 +21,7 @@ import java.net.InetAddress;
  */
 public class ClientControl {
 
-    private int serverPort = 5555;
+    private int serverPort = 3001;
     private int clientPort = 6666;
     private String serverHost = "localhost";
     private DatagramSocket myClient;
@@ -29,7 +29,7 @@ public class ClientControl {
     public ClientControl(ClientView view) {
     }
 
-    private void openConnection() {
+    public void openConnection() {
         try {
             myClient = new DatagramSocket(clientPort);
         } catch (Exception ex) {
@@ -37,7 +37,7 @@ public class ClientControl {
         }
     }
 
-    private void closeConnection() {
+    public void closeConnection() {
         try {
             myClient.close();
         } catch (Exception ex) {
@@ -45,7 +45,7 @@ public class ClientControl {
         }
     }
 
-    private void sendData(User user) {
+    public void sendData(User user) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -62,7 +62,7 @@ public class ClientControl {
         }
     }
 
-    private String receiveData() {
+    public String receiveData() {
         String result = "";
         try {
             byte[] receiveData = new byte[1024];

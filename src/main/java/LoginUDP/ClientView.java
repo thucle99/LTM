@@ -14,7 +14,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane ;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -43,7 +43,7 @@ public class ClientView extends JFrame implements ActionListener {
         content.add(txtPassword);
         content.add(btnLogin);
         btnLogin.addActionListener(this);
-       this.setContentPane(content);
+        this.setContentPane(content);
         this.pack();
 
         this.addWindowListener(new WindowAdapter() {
@@ -57,10 +57,11 @@ public class ClientView extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(btnLogin)) {
-            ClientControl clientCtr =new ClientControl() ;
+            ClientControl clientCtr =new ClientControl(this) ;
             clientCtr.openConnection();
             User user = new User(txtUsername.getText(),
                     txtPassword.getText());
+             System.out.println("tk:"+txtUsername.getText() +"....mk: " +txtPassword.getText());
             clientCtr.sendData(user);
             String result = clientCtr.receiveData();
             if (result.equals("ok")) {
